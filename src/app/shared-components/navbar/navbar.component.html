@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand">Finances</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/home">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/home/add-expenses">Add expense</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="home/summary">Summary</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav">
+      <li *ngIf="!auth.isSignedIn" class="nav-item">
+        <a class="nav-link btn btn-success" routerLink="/signin">Sign In</a>
+      </li>
+
+      <li *ngIf="auth.isSignedIn" class="nav-item">
+        <a class="nav-link btn btn-success" routerLink="/signin">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>

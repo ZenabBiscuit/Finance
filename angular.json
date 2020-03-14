@@ -122,8 +122,13 @@
               "devServerTarget": "finance-management:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "finance-management"
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FinService } from './fin.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'finance-management';
+
+  constructor(public fins: FinService){
+
+  }
 }

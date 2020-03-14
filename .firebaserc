@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "first-proj-bac53": {
+      "hosting": {
+        "finance-management": [
+          "first-proj-bac53"
+        ]
+      }
+    }
+  }
+}
