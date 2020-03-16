@@ -5,14 +5,17 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav mr-auto">
+
       <li class="nav-item active">
         <a class="nav-link" routerLink="/home">Home</a>
       </li>
+    
       <li class="nav-item active">
         <a class="nav-link" routerLink="/home/add-expenses">Add expense</a>
       </li>
+    
       <li class="nav-item active">
-        <a class="nav-link" routerLink="home/summary">Summary</a>
+        <a class="nav-link" routerLink="/home/summary">Summary</a>
       </li>
     </ul>
 
@@ -22,7 +25,7 @@
       </li>
 
       <li *ngIf="auth.isSignedIn" class="nav-item">
-        <a class="nav-link btn btn-success" routerLink="/signin">Logout</a>
+        <a class="nav-link btn btn-success" routerLink="/signin" (click)=LogOut()>Logout</a>
       </li>
     </ul>
   </div>

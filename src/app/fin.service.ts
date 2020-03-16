@@ -20,6 +20,7 @@ export class FinService {
       //this.expenses.push(this.expform)
       //this.expform = {amount:"",desc:""}
       this.db.collection("expense").add(this.expform)
+      this.expform = {amount:0, desc:""}
   }
 
   delExpense(mem){
@@ -36,7 +37,8 @@ export class FinService {
         const id = a.payload.doc.id;
         return { id, ...data };
       }))
-    ).subscribe(res=>{
+    )
+    .subscribe(res=>{
       console.log(res)
       this.expenses = res
     })

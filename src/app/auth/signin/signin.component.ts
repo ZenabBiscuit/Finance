@@ -18,7 +18,7 @@ export class SigninComponent implements OnInit {
 
   SignIn(){
     let status = false
-    status = this.auth.signIn(this.email, this.password)
+    status = this.auth.signInAuth(this.email, this.password)
     if(status==true){
       this.route.navigateByUrl('/home')
     }
