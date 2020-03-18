@@ -1,5 +1,8 @@
-<app-member [member]="item" *ngFor = "let item of fins.expenses"></app-member>
-
-
-
-
+<div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-3">
+        <app-member [member]="item" *ngFor = "let item of fins.expenses"></app-member> 
+        <h4 *ngIf="fins.expenses.length==0">No expenses</h4>
+    </div>
+    <div class="col-lg-3"></div>
+</div>

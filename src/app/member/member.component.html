@@ -1,8 +1,18 @@
+
 <div class="card" style="width: 18rem;">
     <div class="card-body">
-      <h6 class="card-title" >{{data.amount}}</h6><hr>
-      <p class="card-text" >{{data.desc}}</p>
-      <button class="btn btn-danger" (click)="delete()">Delete</button>
-      <button class="btn btn-primary" (click)="update()">Update</button>
+      <div *ngIf="!isformvisible">
+        <h6 (click)="sendToExpenseDetails()" class="card-title text-light" ><b>Amount: </b>{{data.amt}}</h6><hr>
+        <p class="card-text text-light"><b>Description: </b>{{data.desc}}</p><br>
+        <div class="text-center"><button class="btn btn-danger mx-3"><i class="fa fa-trash" style="color:#000000" (click)="delete()"></i></button>
+        <button class="btn btn-warning mx-3"><i class="fa fa-edit" style="color:#000000" (click)="onUpdateClicked()"></i></button></div>
+      </div>
+      <div *ngIf="isformvisible">
+        <input class="form-control" type="number" [(ngModel)]="editedExpense.amt"><br>
+        <input class="form-control" type="text" [(ngModel)]="editedExpense.desc"><br>
+        <button class="btn btn-success mx-4" type="submit" (click)="update()">Update</button>
+        <button class="btn btn-danger" type="submit" (click)="onUpdateClicked()">Cancel</button>
+      </div>    
     </div>
 </div>
+

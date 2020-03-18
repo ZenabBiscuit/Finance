@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand">Finances</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -21,12 +21,16 @@
 
     <ul class="navbar-nav">
       <li *ngIf="!auth.isSignedIn" class="nav-item">
-        <a class="nav-link btn btn-success" routerLink="/signin">Sign In</a>
+        <a class="nav-link btn btn-warning text-dark" routerLink="/signin">Sign In</a>
       </li>
 
       <li *ngIf="auth.isSignedIn" class="nav-item">
-        <a class="nav-link btn btn-success" routerLink="/signin" (click)=LogOut()>Logout</a>
+        <a class="nav-link btn btn-warning text-dark" routerLink="/signin" (click)=LogOut()>Logout</a>
       </li>
     </ul>
   </div>
 </nav>
+
+
+
+

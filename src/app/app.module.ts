@@ -19,6 +19,8 @@ import { AngularFireAuthModule} from '@angular/fire/auth'
 import { NavbarComponent } from './shared-components/navbar/navbar.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { HomeComponent } from './home/home.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { ExpenseDetailsComponent } from './expense-details/expense-details.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { HomeComponent } from './home/home.component';
     MemberComponent,
     NavbarComponent,
     SigninComponent,
-    HomeComponent
+    HomeComponent,
+    SignupComponent,
+    ExpenseDetailsComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,24 +3,32 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { element } from 'protractor';
+import { Member } from './member.model';
+import { AuthServiceService } from './auth-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FinService {
-  expform: {amount:number,desc:string} = {amount:0, desc:""}
+  expform: {amt:number, desc:string, createdBy:string} = {amt:0, desc:"", createdBy:""}
   expenses = []
   sum = 0
-  constructor(public db: AngularFirestore) { 
-    this.sumExpenses()
+  constructor(public db: AngularFirestore, public auth:AuthServiceService) { 
     this.getExpenses()
   }
   
-  addExpense(){
-      //this.expenses.push(this.expform)
+  addExpense(expenseAdded){
+      //this.expenses.push(expenseAdded)
       //this.expform = {amount:"",desc:""}
-      this.db.collection("expense").add(this.expform)
-      this.expform = {amount:0, desc:""}
+     // console.log(expenseAdded)
+      //console.log(this.expenses)
+      let tempExp: {amt:number, desc:string, createdBy: string} = {amt:0, desc:"", createdBy:""}
+      tempExp.amt = expenseAdded.amt
+      tempExp.desc = expenseAdded.desc
+      tempExp.createdBy = this.auth.getUserId()
+      this.db.collection("expense").add(tempExp)
+      this.expform = {amt:0, desc:"", createdBy:""}
+
   }
 
   delExpense(mem){
@@ -29,7 +37,35 @@ export class FinService {
   }
 
   getExpenses(){
-    this.db.collection("expense", res=>res.orderBy('amount', 'asc'))
+    console.log(this.auth.loggedInUserId)
+    this.db.collection("expense", ref=>ref.orderBy("amt", "asc"))
+    .snapshotChanges()
+    .pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as any;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      }))
+    )
+    .subscribe(res=>{
+      this.expenses = res
+    })
+  }
+
+  sumExpenses(){  
+    console.log(this.sum)
+  }
+
+  updateExpense(id, data){
+    this.db.collection("expense").doc(id).set(data)
+  }
+
+  getExpenseById(id){
+    return this.db.collection("expense").doc(id).valueChanges()
+  }
+
+  getTotal(){
+    this.db.collection("expense", ref=>ref.orderBy("amt", "asc"))
     .snapshotChanges()
     .pipe(
       map(actions => actions.map(a => {
@@ -40,11 +76,7 @@ export class FinService {
     )
     .subscribe(res=>{
       console.log(res)
-      this.expenses = res
+      
     })
-  }
-
-  sumExpenses(){  
-    console.log(this.sum)
   }
 }

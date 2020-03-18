@@ -1,0 +1,15 @@
+body {
+    background-image: url('https://i.pinimg.com/originals/29/b4/02/29b40278341d35f44d4fba3f098b21d1.jpg');
+    font-family: 'Numans', sans-serif;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100%;
+    min-width: 1024px;
+    /* Set up proportionate scaling */
+    width: 100%;
+    height: auto;
+    /* Set up positioning */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
