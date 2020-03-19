@@ -12,26 +12,23 @@ export class AuthServiceService {
   constructor(public router: Router, public afAuth: AngularFireAuth) {  
     this.afAuth.user.subscribe(res=>{
       if(res.uid){
-        console.log(res.uid)
         this.loggedInUserId = res.uid
-        console.log(this.loggedInUserId)
         this.isSignedIn = true
         this.router.navigateByUrl("/home")
       }
       else{
         this.isSignedIn = false
       }
-      console.log(this.loggedInUserId)
     })
-    console.log(this.loggedInUserId)
   }
 
   signInAuth(email, password){
     this.afAuth.signInWithEmailAndPassword(email, password).then(res=>{
-      console.log(res)
       this.isSignedIn = true
       this.loggedInUserId  = res.user.uid
       this.router.navigateByUrl("/home")
+      
+
     })
 
     .catch(res=>{
@@ -58,7 +55,6 @@ export class AuthServiceService {
 
   signUpAuth(email, password){
     this.afAuth.createUserWithEmailAndPassword(email, password).then(res=>{
-      console.log(res)
       this.isSignedIn = true
       this.loggedInUserId  = res.user.uid
       this.router.navigateByUrl("/home")
@@ -68,7 +64,6 @@ export class AuthServiceService {
   }
 
   getUserId(){
-    console.log(this.loggedInUserId)
     return this.loggedInUserId
   }
 }

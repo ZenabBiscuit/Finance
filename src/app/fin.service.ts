@@ -14,14 +14,11 @@ export class FinService {
   expenses = []
   sum = 0
   constructor(public db: AngularFirestore, public auth:AuthServiceService) { 
-    this.getExpenses()
   }
   
   addExpense(expenseAdded){
       //this.expenses.push(expenseAdded)
       //this.expform = {amount:"",desc:""}
-     // console.log(expenseAdded)
-      //console.log(this.expenses)
       let tempExp: {amt:number, desc:string, createdBy: string} = {amt:0, desc:"", createdBy:""}
       tempExp.amt = expenseAdded.amt
       tempExp.desc = expenseAdded.desc
@@ -37,8 +34,7 @@ export class FinService {
   }
 
   getExpenses(){
-    console.log(this.auth.loggedInUserId)
-    this.db.collection("expense", ref=>ref.orderBy("amt", "asc"))
+    this.db.collection("expense", ref=>ref.where('createdBy', '==', this.auth.getUserId()))
     .snapshotChanges()
     .pipe(
       map(actions => actions.map(a => {
@@ -51,11 +47,7 @@ export class FinService {
       this.expenses = res
     })
   }
-
-  sumExpenses(){  
-    console.log(this.sum)
-  }
-
+  
   updateExpense(id, data){
     this.db.collection("expense").doc(id).set(data)
   }
@@ -65,6 +57,7 @@ export class FinService {
   }
 
   getTotal(){
+    
     this.db.collection("expense", ref=>ref.orderBy("amt", "asc"))
     .snapshotChanges()
     .pipe(

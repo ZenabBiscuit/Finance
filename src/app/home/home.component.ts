@@ -11,6 +11,8 @@ export class HomeComponent implements OnInit {
   constructor(public fins: FinService) { }
 
   ngOnInit() {
+    this.fins.getExpenses()
+
   }
 
 }

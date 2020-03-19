@@ -9,7 +9,7 @@ import { FinService } from './fin.service';
 export class AppComponent {
   title = 'finance-management';
 
-  constructor(public fins: FinService){
+  constructor(){
 
   }
 }

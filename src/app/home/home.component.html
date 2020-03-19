@@ -1,8 +1,8 @@
 <div class="row">
-    <div class="col-lg-3"></div>
-    <div class="col-lg-3">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
         <app-member [member]="item" *ngFor = "let item of fins.expenses"></app-member> 
-        <h4 *ngIf="fins.expenses.length==0">No expenses</h4>
+        <div *ngIf="fins.expenses.length==0" class="alert alert-warning" role="alert">No expenses found!</div>
     </div>
-    <div class="col-lg-3"></div>
+    <div class="col-lg-4"></div>
 </div>
